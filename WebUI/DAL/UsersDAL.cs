@@ -16,7 +16,7 @@ namespace WebUI.DAL
             Users model = new Users();
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                string sql = "select * from Sys_Users where UsersName='" + userName + "' and Password='" + Pwd + "'";
+                string sql = "select * from Sys_Users where (UsersName='" + userName + "' or tel = '"+userName+"') and Password='" + Pwd + "'";
                 model = con.QueryFirstOrDefault<Users>(sql);
             }
             return model;

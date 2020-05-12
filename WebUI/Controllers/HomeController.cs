@@ -44,11 +44,6 @@ namespace WebUI.Controllers
         public JsonResult JsonLogin(string UserName, string UserPwd)
         {
             List<Users> list = new List<Users>();
-            //list.Add(new Users() { ID = 1, UsersName = "admin", Password = "123456", UsersNo = "0001", Sex = "男", Birthday = "1999-01-02", ClassInfo = "管理员", Tel = "13145677654", Address = "中国", Img = "/lib/Hui/img/a5.jpg", States = 1 });
-            //list.Add(new Users() { ID = 2, UsersName = "张三", Password = "123456", UsersNo = "0002", Sex = "女", Birthday = "1999-04-02", ClassInfo = "老师", Tel = "13145677654", Address = "中国", Img = "/lib/Hui/img/a1.jpg", States = 1 });
-            //list.Add(new Users() { ID = 3, UsersName = "李四", Password = "123456", UsersNo = "0003", Sex = "女", Birthday = "1999-05-02", ClassInfo = "学生", Tel = "13145677654", Address = "中国", Img = "/lib/Hui/img/a3.jpg", States = 1 });
-            //list.Add(new Users() { ID = 4, UsersName = "王五", Password = "123456", UsersNo = "0004", Sex = "男", Birthday = "1999-06-02", ClassInfo = "学生", Tel = "13145677654", Address = "中国", Img = "/lib/Hui/img/a4.jpg", States = 1 });
-            //Users model = list.Where(a => a.UsersName == UserName && a.Password == UserPwd).FirstOrDefault();
 
             Users model = ud.GetLogin(UserName, UserPwd);
             string json = "";
@@ -121,14 +116,13 @@ namespace WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult UpdatePwd(string Types, string Tel, string UsersNo, string Password)
+        public JsonResult UpdatePwd(string Tel, string Password)
         {
-            string update = @"IF  EXISTS (SELECT * FROM [BSXMDB].[dbo].[Sys_Users] WHERE  UsersNo='" + UsersNo + "' AND tel='"
-                            + Tel + "' and Types='" + Types + "')    UPDATE [BSXMDB].[dbo].[Sys_Users] SET [Password]='"
-                            + Password + "' WHERE  UsersNo='" + UsersNo + "' AND tel='" + Tel + "' and  Types='" + Types + "' ELSE  SELECT -1;";
+            string update = @"UPDATE [BSXMDB].[dbo].[Sys_Users] SET [Password]='"
+                            + Password + "' WHERE  UsersName='" + Tel + "' or tel='" + Tel + "'";
             if (dbh.ExecuteSQL(update, conStr) >= 0)
             {
-                Session["user"] = ud.GetLogin(UsersNo, Password);
+                Session["user"] = ud.GetLogin(Tel, Password);
                 row = 1;
             }
             return Json(row, JsonRequestBehavior.AllowGet);

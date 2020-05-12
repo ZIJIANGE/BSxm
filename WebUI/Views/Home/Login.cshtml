@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>空气污染检测系统</title>
+    <title>网络投票系统</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
     <link href="~/lib/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,7 @@
             <div class="col-sm-7">
                 <div class="signin-info">
                     <div class="logopanel m-b">
-                        <h1>[空气污染检测系统 ]</h1>
+                        <h1>[网络投票系统 ]</h1>
                     </div>
                     <div class="m-b"></div>
                     <h4>欢迎使用 <strong></strong></h4>
@@ -47,8 +47,8 @@
             </div>
             <div class="col-sm-5">
 
-                <p class="m-t-md"> 空气污染检测系统</p>
-                <input type="text" id="InputUserName" name="InputUserName" class="form-control uname" placeholder="请输入用户名" />
+                <p class="m-t-md"> 网络投票系统</p>
+                <input type="text" id="InputUserName" name="InputUserName" class="form-control uname" placeholder="请输入手机号码" />
                 <input type="password" id="InputPassword" name="InputPassword" class="form-control pword m-b" placeholder="请输入用户名密码" />
                 <a href="/Home/UpdatePwd">忘记密码了？</a>
                 <button id="btnLogin" class="btn btn-success btn-block">登录</button>
@@ -73,6 +73,13 @@
         $(document).ready(function () {
             var layer = layui.layer, table = layui.table, form = layui.form, util = layui.util, element = layui.element, $ = layui.$;
             $("#btnLogin").click(function () {
+                var phone = document.getElementById('InputUserName').value;
+                if (phone!='admin') {
+                    if (!(/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/.test(phone))) {
+                        alert("手机号码有误，请重填");
+                        return false;
+                    }
+                }
                 $.ajax({
                     url: '@Url.Action("JsonLogin", "Home")',
                     data: { UserName: $("#InputUserName").val(), UserPwd: $("#InputPassword").val() },
