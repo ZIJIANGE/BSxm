@@ -1,0 +1,199 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空气污染检测系统 后台主题UI框架 - 注册</title>
+    <meta name="keywords" content="空气污染检测系统后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="空气污染检测系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="~/lib/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/animate.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/style.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/login.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/plugins/iCheck/custom.css" rel="stylesheet" />
+    <script>if (window.top !== window.self) { window.top.location = window.location; }</script>
+    <style>
+        .input-code {
+            outline: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+
+@model WebUI.Models.Users
+
+<body class="gray-bg " style="background: #18c8f6; height: auto;    background: url(../../lib/Hui/img/login-background.jpg) no-repeat center fixed;    -webkit-background-size: cover;    -moz-background-size: cover;    -o-background-size: cover;
+    background-size: cover;    ">
+    @using (Html.BeginForm())
+    {
+        <div class="middle-box text-center loginscreen   animated fadeInDown">
+            <div>
+                <div>
+                    <h1 class="logo-name"></h1>
+                </div>
+                <h3>欢迎注册 空气污染检测系统</h3>
+                <p>创建一个空气污染检测系统新账户</p>
+                <div class="form-group">
+                    <select class="form-control" id="Types" name="Types" required="">
+                        <option value="">请选择注册身份</option>
+                        <option value="教务处">教务处</option>
+                        <option value="教师">教师</option>
+                        <option value="家长">家长</option>
+                        <option value="学生">学生</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="UsersName" name="UsersName" class="form-control" placeholder="请输入姓名(必填)" required="">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="Sex" name="Sex" required="">
+                        <option value="">请选择性别</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="Tel" name="Tel" class="form-control" placeholder="请输入手机号(必填)" required="">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="Email" name="Email" class="form-control" placeholder="请输入邮箱(选填)">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="Address" name="Address" class="form-control" placeholder="请输入家庭住址(选填)">
+                </div>
+                <div id="jz" style="display:none">
+                    <div class="form-group">
+                        <select class="form-control" id="Sex" name="Sex" required="">
+                            <option value="">学生所在年级</option>
+                            <option value="一年级">一年级</option>
+                            <option value="二年级">二年级</option>
+                            <option value="三年级">三年级</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control" id="Sex" name="Sex" required="">
+                            <option value="">学生所在班级</option>
+                            <option value="1班">1班</option>
+                            <option value="2班">2班</option>
+                            <option value="3班">3班</option>
+                            <option value="4班">4班</option>
+                            <option value="5班">5班</option>
+                            <option value="6班">6班</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="Address" required="" class="input-code" style="margin-left:-8%; background-color: #FFFFFF;    background-image: none;    border: 1px solid #e5e6e7;    border-radius: 1px;    color: inherit;    padding: 6px 12px;" placeholder="验证码">
+                    <span class="code" title="点击切换" style=" width: 120px; padding: 10px; text-align: center; display: inline-block; background-color: rgb(208, 217, 249); cursor: pointer; ">
+                        <span style="padding:0 2px;color:#169b9a;display:inline-block;transform:rotate(26deg);">J</span>
+                        <span style="padding:0 2px;color:#169b9a;display:inline-block;transform:rotate(2deg);">1</span>
+                        <span style="padding:0 2px;color:#e30d65;display:inline-block;transform:rotate(3deg);">1</span>
+                        <span style="padding:0 2px;color:#135784;display:inline-block;transform:rotate(-8deg);">6</span>
+                        <span style="padding:0 2px;color:#74675a;display:inline-block;transform:rotate(2deg);">3</span>
+                        <span style="padding:0 2px;color:#c317e3;display:inline-block;transform:rotate(-23deg);">P</span>
+                        <input placeholder="" value="J1163P" type="hidden">
+                    </span>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="请输入密码" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="Password1" name="Password1" class="form-control" placeholder="请再次输入密码" required="">
+                </div>
+
+                
+
+                <button type="submit" id="btnRegister" class="btn btn-primary block full-width m-b">注 册</button>
+
+                <p class="text-muted text-center">
+                    <small>已经有账户了？</small><a href="/Home/Login">点此登录</a>
+                </p>
+
+
+            </div>
+        </div>
+    }
+
+    <!-- 全局js -->
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <!-- iCheck -->
+    <script src="~/lib/Hui/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/layui.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/laypage.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/layer.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/form.js"></script>
+    <script src="~/lib/js/jquery.code.js"></script>
+    <script type="text/javascript">
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+
+        layui.use(['util', 'layer', 'form', 'table', 'element', 'jquery'], function () {
+            $(document).ready(function () {
+                var layer = layui.layer, table = layui.table, form = layui.form, util = layui.util, element = layui.element, $ = layui.$;
+                $(document).ready(function () {
+
+                    $("#btnRegister").click(function () {
+                        if ($("#Password").val() == $("#Password1").val()) {
+                            $.ajax({
+                                url: '@Url.Action("Register", "Home")',
+                                data: { UsersNo: $("#UsersNo").val(), Types: $("#Types").val(), Password: $("#Password").val(), UsersName: $("#UsersName").val() },
+                                dataType: 'json',
+                                type: 'POST',
+                                success: function (res) {
+                                    if (eval(res) > 0) {
+                                        window.location.href = '/Home/Index';
+                                    } else {
+                                        parent.layer.msg('登录失败，请核对账号密码！！！');
+                                    }
+
+                                },
+                                error: function () {
+                                }
+                            });
+                        } else {
+                            layer.msg("两次密码不一样");
+                        }
+                    })
+
+                    $('.code').createCode({
+                        len: 4
+                    });
+
+                    $('.input-code').blur(function () {
+                        if ($(this).val().toLowerCase() !== $('.code').children('input').val().toLowerCase()) {
+                            parent.layer.msg('验证码不正确')
+                        } else {
+                            parent.layer.msg('验证通过')
+                        }
+                    })
+
+                    $("#Types").change(function () {
+                        if ($("#Types").val() == "家长") {
+                            $("#jz").show();
+                        } else { $("#jz").hide(); }
+                    })
+                });
+
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

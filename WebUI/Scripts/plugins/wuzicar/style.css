@@ -1,0 +1,101 @@
+body {
+	font-family: 'Lato', sans-serif;
+}
+a {
+	color: #b71a4c;
+}
+.booking-details {float: right;position: relative;width:200px;height: auto; }
+.front-indicator {
+	width:888;
+	background-color: #f6f6f6;	
+	color: #adadad;
+	font-size: 30px;
+	text-align: center;
+	padding:20px;
+	border-radius: 5px;
+}
+.wrapper {
+	width: 1300px;
+	/*margin-left: 10%;*/
+	text-align: center;
+	height:549px
+}
+.container {
+	width: 1300px;
+	height:549px;
+	text-align: center;
+}
+.booking-details {
+	float: left;
+	text-align: left;
+	margin-left: 35px;
+	font-size: 12px;
+	width:100%;
+	
+}
+.booking-details h3 {
+	margin: 5px 5px 0 0;
+	font-size: 14px;
+}
+div.seatCharts-cell {
+	color: WHITE;
+	height: 60px;
+	width: 150px;
+	line-height: 50px;
+}
+
+div.seatCharts-seat {
+	color: #FFFFFF;
+	cursor: pointer;	
+}
+div.seatCharts-row {
+	height: 40px;
+}
+div.seatCharts-seat.available {
+    background-color: #25c4fd;
+    background-image: url('../../../Images/WuZiCar/LOGO.jpg');
+    background-size: cover;
+}
+
+div.seatCharts-seat.available.first-class {
+	background-color: #3a78c3;
+}
+div.seatCharts-seat.focused {
+	background-color: #76B474;
+}
+div.seatCharts-seat.selected {
+	background-color: #E6CAC4;
+}
+div.seatCharts-seat.unavailable {
+	background-color: #e22424;
+}
+
+div.seatCharts-legend {
+	padding-left: 0px;
+	bottom: 100px;
+}
+ul.seatCharts-legendList {
+	padding-left: 0px;
+	width:900px;
+}
+ul .seatCharts-legendItem{
+	float: left;
+	margin-left: 15px;
+	width:100px;
+}
+span.seatCharts-legendDescription {
+	margin-left: 5px;
+	line-height: 30px;
+}
+.checkout-button {
+	display: block;
+	font-size: 40px;
+}
+#selected-seats {
+	max-height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 170px;
+}
+
+

@@ -1,0 +1,147 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空气污染检测系统 后台主题UI框架 - 注册</title>
+    <meta name="keywords" content="空气污染检测系统后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="空气污染检测系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="~/lib/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/animate.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/style.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/login.css" rel="stylesheet" />
+    <link href="~/lib/Hui/css/plugins/iCheck/custom.css" rel="stylesheet" />
+    <script>if (window.top !== window.self) { window.top.location = window.location; }</script>
+    <style>
+        .input-code {
+            outline: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+@model WebUI.Models.Users
+
+<body class="gray-bg " style="background: #18c8f6; height: auto;    background: url(../../lib/Hui/img/login-background.jpg) no-repeat center fixed;    -webkit-background-size: cover;    -moz-background-size: cover;    -o-background-size: cover;
+    background-size: cover;    ">
+    @using (Html.BeginForm())
+    {
+        <div class="middle-box text-center loginscreen   animated fadeInDown">
+            <div>
+                <div>
+                    <h1 class="logo-name"></h1>
+                </div>
+                <h3>欢迎使用【空气污染检测系统】</h3>
+                <p>找回密码</p>
+                <div class="form-group">
+                    <select class="form-control" id="Types" name="Types" required="">
+                        <option value="">请选择注册身份</option>
+                        <option value="教务处">教务处</option>
+                        <option value="教师">教师</option>
+                        <option value="家长">家长</option>
+                        <option value="学生">学生</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="Tel" name="Tel" class="form-control" placeholder="请输入绑定手机号(必填)" required="">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="UsersNo" name="UsersNo" class="form-control" placeholder="请输入学号">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="请输入密码" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="Password1" name="Password1" class="form-control" placeholder="请再次输入密码" required="">
+                </div>
+                <button type="submit" id="btnRegister" class="btn btn-primary block full-width m-b">找回密码</button>
+
+                <p class="text-muted text-center">
+                    <small>已经有账户了？</small><a href="/Home/Login">点此登录</a>
+                </p>
+
+
+            </div>
+        </div>
+    }
+
+    <!-- 全局js -->
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <!-- iCheck -->
+    <script src="~/lib/Hui/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/layui.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/laypage.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/layer.js"></script>
+    <script src="~/lib/layui-v2.5.5/layui/lay/modules/form.js"></script>
+    <script src="~/lib/js/jquery.code.js"></script>
+    <script type="text/javascript">
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+
+        layui.use(['util', 'layer', 'form', 'table', 'element', 'jquery'], function () {
+            $(document).ready(function () {
+                var layer = layui.layer, table = layui.table, form = layui.form, util = layui.util, element = layui.element, $ = layui.$;
+                $(document).ready(function () {
+
+                    $("#btnRegister").click(function () {
+                        if ($("#Password").val() == $("#Password1").val()) {
+                            $.ajax({
+                                url: '@Url.Action("UpdatePwd", "Home")',
+                                data: { Types: $("#Types").val(), Tel: $("#Tel").val(), UsersNo: $("#UsersNo").val(), Password: $("#Password").val() },
+                                dataType: 'json',
+                                type: 'POST',
+                                success: function (res) {
+                                    if (eval(res) > 0) {
+                                        window.location.href = '/Home/Index';
+                                    } else {
+                                        parent.layer.msg('登录失败，请核对账号密码！！！');
+                                    }
+
+                                },
+                                error: function () {
+                                }
+                            });
+                        } else {
+                            layer.msg("两次密码不一样");
+                        }
+                    })
+
+                    $('.code').createCode({
+                        len: 4
+                    });
+
+                    $('.input-code').blur(function () {
+                        if ($(this).val().toLowerCase() !== $('.code').children('input').val().toLowerCase()) {
+                            parent.layer.msg('验证码不正确')
+                        } else {
+                            parent.layer.msg('验证通过')
+                        }
+                    })
+
+                    $("#Types").change(function () {
+                        if ($("#Types").val() == "家长") {
+                            $("#jz").show();
+                        } else { $("#jz").hide(); }
+                    })
+                });
+
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
