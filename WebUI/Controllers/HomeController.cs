@@ -83,7 +83,6 @@ namespace WebUI.Controllers
         public ActionResult Register()
         {
             ViewBag.ClassInfo = dbh.GetSelectItemList("SELECT Types Texts, Types  Value FROM Sys_Users", conStr);
-            ViewBag.ClassInfo = dbh.GetSelectItemList("SELECT Types Texts, Types  Value FROM Sys_Users", conStr);
             return View();
         }
         [HttpPost]
@@ -94,8 +93,8 @@ namespace WebUI.Controllers
                 model.Password = "123456";
             }
             string sql = @" IF not EXISTS (SELECT * FROM [BSXMDB].[dbo].[Sys_Users] WHERE  UsersNo='" + model.UsersNo
-                + "') INSERT INTO [dbo].[Sys_Users]( UsersName, Password, UsersNo, Types, Sex, Birthday, ClassInfo, Tel, Address, Img, States, RZKM, ZC, XL )"
-                + "   VALUES(@UsersName, @Password, @UsersNo, @Types, @Sex, @Birthday, @ClassInfo, @Tel, @Address, @Img, @States, @RZKM, @ZC, @XL)  ELSE SELECT -1; ";
+                + "') INSERT INTO [dbo].[Sys_Users]( UsersName, Password, UsersNo, Types, Tel)"
+                + "   VALUES(@UsersName, @Password, @UsersNo, @Types, @Tel)  ELSE SELECT -1; ";
             row = dbh.ExecuteSQL<Users>(sql, conStr, model);
             if (row >= 0)
             {
